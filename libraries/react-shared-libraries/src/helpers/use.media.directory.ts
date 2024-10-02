@@ -7,7 +7,9 @@ export const useMediaDirectory = () => {
         if (path.indexOf('https') === 0) {
             return path;
         }
-        return `${backendUrl}/${uploadDirectory}${path}`;
+
+        const urlWithoutPort = process.env.NEXT_PUBLIC_BACKEND_URL!.split(':').slice(0, 2).join(':');
+        return `${urlWithoutPort}/${path}`;
     }, []);
 
     return {
